@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Secret Dictionary</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ==============================
+         1. 사전 화면 (기본 화면)
+    =============================== -->
+    <div id="dictionary-view" class="view-container">
+        <header class="dict-header">
+            <div class="menu-icon" id="menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <h1>한영 사전</h1>
+            <div style="width: 24px;"></div> <!-- 밸런스용 공백 -->
+        </header>
+
+        <main class="dict-main">
+            <div class="search-box">
+                <input type="text" id="dict-input" placeholder="단어를 입력하세요...">
+                <button id="dict-search-btn">검색</button>
+            </div>
+            
+            <div id="search-result" class="result-area">
+                <p class="placeholder-text">검색 결과가 여기에 표시됩니다.</p>
+            </div>
+        </main>
+
+        <!-- 사이드 메뉴 (숨김 상태) -->
+        <div id="side-menu" class="side-menu">
+            <div class="menu-header">
+                <h2>설정</h2>
+                <button id="close-menu-btn">✕</button>
+            </div>
+            <ul class="menu-list">
+                <li>검색 기록</li>
+                <li>북마크</li>
+                <li>설정</li>
+                <!-- 히든 트리거 버튼 -->
+                <li id="secret-trigger-btn" class="highlight-menu">더 다양한 언어 사전 이용하기</li>
+            </ul>
+        </div>
+        <div id="menu-overlay" class="menu-overlay"></div>
+    </div>
+
+    <!-- ==============================
+         2. 위장 런처 화면 (히든 화면)
+    =============================== -->
+    <div id="launcher-view" class="view-container hidden">
+        <header class="launcher-header">
+            <button id="launcher-close-btn" class="close-btn">✕</button>
+        </header>
+
+        <main class="launcher-main">
+            <!-- URL 입력창 -->
+            <div class="url-search-container">
+                <input type="text" id="url-input" placeholder="URL 입력 (예: google.com)">
+                <button id="url-go-btn">Go</button>
+            </div>
+
+            <!-- 앱 아이콘 그리드 -->
+            <div class="app-grid">
+                <div class="app-item" onclick="navigateTo('https://www.google.com')">
+                    <div class="app-icon google">G</div>
+                    <span class="app-name">Google</span>
+                </div>
+                <div class="app-item" onclick="navigateTo('https://www.instagram.com')">
+                    <div class="app-icon instagram">I</div>
+                    <span class="app-name">Instagram</span>
+                </div>
+                <div class="app-item" onclick="navigateTo('https://www.youtube.com')">
+                    <div class="app-icon youtube">Y</div>
+                    <span class="app-name">YouTube</span>
+                </div>
+                <div class="app-item" onclick="navigateTo('https://store.supercell.com/game/clashroyale')">
+                    <div class="app-icon clash">C</div>
+                    <span class="app-name">Clash Store</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
 
