@@ -1,1 +1,351 @@
+/* 공통 설정 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.view-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ==============================
+   1. 사전 화면 스타일 (White Theme)
+=============================== */
+#dictionary-view {
+    background-color: #ffffff;
+    color: #333;
+    z-index: 10;
+}
+
+.dict-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-icon span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+}
+
+.dict-main {
+    padding: 20px;
+    flex: 1;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#dict-input {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#dict-input:focus {
+    border-color: #007AFF;
+}
+
+#dict-search-btn {
+    padding: 0 25px;
+    background-color: #007AFF;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+#dict-search-btn:active {
+    background-color: #0056b3;
+}
+
+.result-area {
+    padding: 0;
+    background-color: transparent;
+    min-height: 200px;
+}
+
+/* 검색 결과 카드 스타일 */
+.result-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+
+.word-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.korean-word {
+    font-size: 28px;
+    font-weight: 800;
+    color: #333;
+}
+
+.english-badge {
+    background-color: #e3f2fd;
+    color: #007AFF;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.word-mean {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.eng-mean-box {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #007AFF;
+}
+
+.eng-label {
+    display: block;
+    font-size: 12px;
+    color: #888;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.eng-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* 사이드 메뉴 (Drawer) */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -280px; /* 초기엔 숨김 */
+    width: 280px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+.menu-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#close-menu-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+.menu-list li:active {
+    background-color: #f0f0f0;
+}
+
+.highlight-menu {
+    color: #007AFF;
+    font-weight: bold;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 90;
+    display: none;
+}
+
+.menu-overlay.open {
+    display: block;
+}
+
+
+/* ==============================
+   2. 런처 화면 스타일 (Dark Theme)
+=============================== */
+#launcher-view {
+    background-color: #121212;
+    color: white;
+    z-index: 20;
+}
+
+.launcher-header {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.launcher-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.url-search-container {
+    width: 90%;
+    display: flex;
+    margin-bottom: 40px;
+    background-color: #2c2c2c;
+    border-radius: 25px;
+    padding: 5px 15px;
+}
+
+#url-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+#url-go-btn {
+    background: #007AFF;
+    border: none;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-left: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 90%;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.app-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+    transition: transform 0.1s;
+}
+
+.app-item:active .app-icon {
+    transform: scale(0.95);
+}
+
+.app-name {
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+}
+
+/* 아이콘 색상 */
+.google { background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335); }
+.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.youtube { background-color: #FF0000; }
+.clash { background-color: #4A90E2; }
 
